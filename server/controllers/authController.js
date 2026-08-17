@@ -168,3 +168,114 @@ exports.updateProfile = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+// @desc    Forgot Password - request email token
+// @route   POST /api/auth/forgotpassword
+// @access  Public
+exports.forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'No user registered with this email address' });
+    }
+
+    // Get reset token
+    const resetToken = user.getResetPasswordToken();
+
+    await user.save({ validateBeforeSave: false });
+
+    // Create reset url (fallback to origin domain to support dev and prod dynamically)
+    const frontendUrl = process.env.FRONTEND_URL || req.headers.referer || `${req.protocol}://${req.get('host')}`;
+    // Strip trailing slash if present
+    const cleanUrl = frontendUrl.replace(/\/$/, '');
+    const resetUrl = `${cleanUrl}/reset-password/${resetToken}`;
+
+    const message = `You are receiving this email because you (or someone else) have requested the reset of a password. Please make a PUT request to: \n\n ${resetUrl} \n\n This link is only valid for 10 minutes. If you did not request this, please ignore this email.`;
+    
+    const htmlMessage = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1a202c;">
+        <h2 style="color: #4f46e5; margin-bottom: 20px;">Password Reset Request</h2>
+        <p>Hello ${user.name},</p>
+        <p>We received a request to reset your password for your <strong>TalentSphere AI</strong> account. Click the button below to set a new password:</p>
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="${resetUrl}" style="background-color: #4f46e5; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Reset Password</a>
+        </div>
+        <p style="font-size: 12px; color: #718096;">If the button doesn't work, copy and paste this link into your browser:</p>
+        <p style="font-size: 12px; word-break: break-all; color: #4f46e5;">${resetUrl}</p>
+        <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 30px 0;" />
+        <p style="font-size: 12px; color: #a0aec0;">This link is valid for 10 minutes. If you did not request a password reset, you can safely ignore this email.</p>
+      </div>
+    `;
+
+    try {
+      await sendEmail({
+        email: user.email,
+        subject: 'TalentSphere Password Reset Link',
+        message,
+        html: htmlMessage,
+      });
+
+      res.status(200).json({ success: true, message: 'Password reset link sent to email' });
+    } catch (err) {
+      console.error('Email failed to send:', err.message);
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpire = undefined;
+      await user.save({ validateBeforeSave: false });
+
+      return res.status(500).json({ success: false, message: 'Email could not be sent. Please check server SMTP configuration.' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// @desc    Reset Password
+// @route   PUT /api/auth/resetpassword/:resettoken
+// @access  Public
+exports.resetPassword = async (req, res) => {
+  try {
+    const crypto = require('crypto');
+    // Get hashed token
+    const resetPasswordToken = crypto
+      .createHash('sha256')
+      .update(req.params.resettoken)
+      .digest('hex');
+
+    const user = await User.findOne({
+      resetPasswordToken,
+      resetPasswordExpire: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({ success: false, message: 'Password reset link is invalid or has expired' });
+    }
+
+    // Set new password
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+
+    // Auto log in user on successful reset
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN || '7d',
+    });
+
+    res.status(200).json({
+      success: true,
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};

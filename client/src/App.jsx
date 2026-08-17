@@ -8,6 +8,7 @@ import DashboardLayout from './layouts/DashboardLayout';
 // Pages
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
 import Categories from './pages/Categories';
 import QuestionDetail from './pages/QuestionDetail';
@@ -32,6 +33,7 @@ const App = () => {
           {/* Public Auth Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
 
           {/* Secure Layout Workspace */}
           <Route element={<DashboardLayout />}>

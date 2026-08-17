@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMail, FiLock, FiAlertCircle, FiX, FiCheck } from 'react-icons/fi';
+import API from '../services/api';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -13,6 +14,8 @@ const Login = () => {
   const [forgotOpen, setForgotOpen] = useState(false);
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotSuccess, setForgotSuccess] = useState(false);
+  const [forgotLoading, setForgotLoading] = useState(false);
+  const [forgotError, setForgotError] = useState('');
 
   const {
     register,
@@ -32,15 +35,24 @@ const Login = () => {
     }
   };
 
-  const handleForgotSubmit = (e) => {
+  const handleForgotSubmit = async (e) => {
     e.preventDefault();
     if (!forgotEmail) return;
-    setForgotSuccess(true);
-    setTimeout(() => {
-      setForgotSuccess(false);
-      setForgotOpen(false);
-      setForgotEmail('');
-    }, 3000);
+
+    setForgotLoading(true);
+    setForgotError('');
+    setForgotSuccess(false);
+
+    try {
+      const res = await API.post('/auth/forgotpassword', { email: forgotEmail });
+      if (res.data.success) {
+        setForgotSuccess(true);
+      }
+    } catch (err) {
+      setForgotError(err.response?.data?.message || 'Failed to request password reset. Please try again.');
+    } finally {
+      setForgotLoading(false);
+    }
   };
 
   return (
@@ -194,16 +206,23 @@ const Login = () => {
 
               <h3 className="text-xl font-bold text-slate-100 mb-2">Reset Password</h3>
               <p className="text-sm text-slate-400 mb-6">
-                Enter your email address and we'll simulate sending you instructions to reset your password.
+                Enter your email address and we will send you secure instructions to reset your account password.
               </p>
+
+              {forgotError && (
+                <div className="mb-4 bg-rose-500/10 border border-rose-500/20 text-rose-400 p-3.5 rounded-xl flex items-center gap-2.5 text-xs">
+                  <FiAlertCircle className="w-4 h-4 flex-shrink-0" />
+                  <span>{forgotError}</span>
+                </div>
+              )}
 
               {forgotSuccess ? (
                 <div className="bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 p-4 rounded-xl flex items-start gap-3">
                   <FiCheck className="w-5 h-5 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h5 className="font-semibold text-sm">Simulation Successful</h5>
+                    <h5 className="font-semibold text-sm">Reset Link Dispatched</h5>
                     <p className="text-xs text-slate-400 mt-1">
-                      Reset instructions sent to <strong>{forgotEmail}</strong> (Demo environment simulation).
+                      Check your email! An instructions link has been sent to <strong>{forgotEmail}</strong>.
                     </p>
                   </div>
                 </div>
@@ -224,9 +243,14 @@ const Login = () => {
                   </div>
                   <button
                     type="submit"
-                    className="w-full flex justify-center py-3 px-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-semibold shadow-lg shadow-indigo-600/15 transition-all"
+                    disabled={forgotLoading}
+                    className="w-full flex justify-center py-3 px-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-semibold shadow-lg shadow-indigo-600/15 disabled:opacity-50 transition-all"
                   >
-                    Simulate Reset
+                    {forgotLoading ? (
+                      <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                    ) : (
+                      'Send Reset Instructions'
+                    )}
                   </button>
                 </form>
               )}

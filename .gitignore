@@ -25,3 +25,10 @@ server/logs/
 # OS Files
 .DS_Store
 Thumbs.db
+
+## 💡 Demo Logins (Seeded Accounts)
+
+| Role | Email Address | Password |
+| :--- | :--- | :--- |
+| **Admin** | `seedadmin@talentsphere.com` | `admin123` |
+| **Student** | `student@talentsphere.com` | `student123` |

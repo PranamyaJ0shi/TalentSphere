@@ -147,8 +147,8 @@ Open your browser and navigate to **`http://localhost:5173`** to access the plat
 
 | Role | Email Address | Password |
 | :--- | :--- | :--- |
-| **Admin** | `seedadmin@talentsphere.com` | `admin123` |
-| **Student** | `student@talentsphere.com` | `student123` |
+| **Admin** | `seedadmin@talentsphere.com` | `admin1234` |
+| **Student** | `student@talentsphere.com` | `student1234` |
 
 You can also use the registration form to create new student or admin accounts instantly.
 
