@@ -15,6 +15,9 @@ connectDB();
 
 const app = express();
 
+// Trust proxy for rate limiting (Render reverse proxy)
+app.set('trust proxy', 1);
+
 // 1. Basic Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
