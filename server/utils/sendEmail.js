@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const dns = require('dns');
 
 const sendEmail = async (options) => {
   // Create a SMTP transporter
@@ -9,6 +10,10 @@ const sendEmail = async (options) => {
     auth: {
       user: process.env.SMTP_EMAIL,
       pass: process.env.SMTP_PASSWORD,
+    },
+    // Force IPv4 lookup to prevent ENETUNREACH errors on Render
+    lookup: (hostname, dnsOptions, callback) => {
+      dns.lookup(hostname, { family: 4 }, callback);
     },
   });
 
