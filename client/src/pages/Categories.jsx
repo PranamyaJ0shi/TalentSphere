@@ -82,15 +82,15 @@ const Categories = () => {
   if (loading) {
     return (
       <div className="space-y-8 animate-pulse">
-        <div className="h-10 w-1/4 bg-slate-900 rounded-xl shimmer"></div>
+        <div className="h-10 w-1/4 bg-slate-200 rounded-xl shimmer"></div>
         <div className="flex gap-3 overflow-x-auto pb-2">
           {[1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className="h-10 w-32 bg-slate-900 rounded-full shimmer shrink-0"></div>
+            <div key={i} className="h-10 w-32 bg-slate-200 rounded-full shimmer shrink-0"></div>
           ))}
         </div>
         <div className="space-y-4">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-24 bg-slate-900 rounded-3xl shimmer border border-slate-800/40"></div>
+            <div key={i} className="h-24 bg-slate-200 rounded-3xl shimmer border border-slate-200"></div>
           ))}
         </div>
       </div>
@@ -108,10 +108,10 @@ const Categories = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold text-slate-100 bg-gradient-to-r from-white via-slate-100 to-indigo-300 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-extrabold text-slate-800 bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
           Interview Roles & Questions
         </h1>
-        <p className="text-slate-400 mt-1 text-sm">
+        <p className="text-slate-500 mt-1 text-sm">
           Select your target role, search by topics, and start practicing questions to get immediate AI evaluations.
         </p>
       </div>
@@ -125,7 +125,7 @@ const Categories = () => {
             className={`px-4.5 py-2.5 rounded-2xl text-xs font-bold transition-all duration-200 whitespace-nowrap border shrink-0 ${
               selectedRole === 'All'
                 ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/15'
-                : 'bg-slate-900/60 border-slate-800/80 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                : 'bg-white/80 border-slate-200 text-slate-500 hover:text-slate-800 hover:border-blue-300'
             }`}
           >
             All Roles ({questions.length})
@@ -139,7 +139,7 @@ const Categories = () => {
                 className={`px-4.5 py-2.5 rounded-2xl text-xs font-bold transition-all duration-200 whitespace-nowrap border shrink-0 ${
                   selectedRole === cat.name
                     ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/15'
-                    : 'bg-slate-900/60 border-slate-800/80 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                    : 'bg-white/80 border-slate-200 text-slate-500 hover:text-slate-800 hover:border-blue-300'
                 }`}
               >
                 {cat.name} ({count})
@@ -161,7 +161,7 @@ const Categories = () => {
             placeholder="Search by question title, concepts, or tags..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="block w-full pl-11 pr-4 py-3 bg-slate-900/40 border border-slate-800/80 rounded-2xl text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
+            className="block w-full pl-11 pr-4 py-3 bg-white border border-slate-300 rounded-2xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
           />
         </div>
 
@@ -173,12 +173,12 @@ const Categories = () => {
           <select
             value={selectedDiff}
             onChange={(e) => setSelectedDiff(e.target.value)}
-            className="block w-full pl-11 pr-4 py-3 bg-slate-900/40 border border-slate-800/80 rounded-2xl text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm appearance-none cursor-pointer"
+            className="block w-full pl-11 pr-4 py-3 bg-white border border-slate-300 rounded-2xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm appearance-none cursor-pointer"
           >
-            <option value="All" className="bg-slate-950">All Difficulties</option>
-            <option value="Easy" className="bg-slate-950">Easy</option>
-            <option value="Medium" className="bg-slate-950">Medium</option>
-            <option value="Hard" className="bg-slate-950">Hard</option>
+            <option value="All" className="bg-white">All Difficulties</option>
+            <option value="Easy" className="bg-white">Easy</option>
+            <option value="Medium" className="bg-white">Medium</option>
+            <option value="Hard" className="bg-white">Hard</option>
           </select>
         </div>
       </div>
@@ -200,12 +200,12 @@ const Categories = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.2, delay: Math.min(idx * 0.05, 0.3) }}
-                  className="group relative bg-slate-900/40 border border-slate-800/50 hover:border-slate-700/60 p-5 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-5 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/2"
+                  className="group relative bg-white/60 border border-slate-200 hover:border-blue-300 p-5 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-5 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10"
                 >
                   <div className="space-y-2.5 overflow-hidden flex-grow">
                     {/* Header: Role & Difficulty */}
                     <div className="flex flex-wrap items-center gap-2 text-xs">
-                      <span className="bg-slate-950 text-slate-400 font-semibold px-2 py-0.5 rounded-md border border-slate-800/40">
+                      <span className="bg-blue-50 text-blue-700 font-semibold px-2 py-0.5 rounded-md border border-blue-200">
                         {q.role}
                       </span>
                       <span className={`px-2 py-0.5 rounded-md font-bold ${diffStyles[q.difficulty]}`}>
@@ -217,19 +217,19 @@ const Categories = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-base font-bold text-slate-200 group-hover:text-indigo-400 transition-colors">
+                    <h3 className="text-base font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
                       {q.title}
                     </h3>
 
                     {/* Description excerpt */}
-                    <p className="text-sm text-slate-400 line-clamp-1 max-w-3xl">
+                    <p className="text-sm text-slate-500 line-clamp-1 max-w-3xl">
                       {q.description}
                     </p>
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {q.tags.map((t) => (
-                        <span key={t} className="text-[10px] font-semibold bg-slate-950/80 text-slate-500 px-2 py-0.5 rounded-full border border-slate-800/30">
+                        <span key={t} className="text-[10px] font-semibold bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full border border-slate-200">
                           #{t}
                         </span>
                       ))}
@@ -237,7 +237,7 @@ const Categories = () => {
                   </div>
 
                   {/* Actions / Status Right Side */}
-                  <div className="flex items-center gap-4.5 justify-between w-full md:w-auto shrink-0 pt-3 md:pt-0 border-t border-slate-900 md:border-0">
+                  <div className="flex items-center gap-4.5 justify-between w-full md:w-auto shrink-0 pt-3 md:pt-0 border-t border-slate-200 md:border-0">
                     <div className="flex items-center gap-3">
                       {/* Solved Status Indicator */}
                       {q.isSolved ? (
@@ -255,7 +255,7 @@ const Categories = () => {
                         className={`p-2.5 rounded-xl border transition-colors ${
                           q.isBookmarked
                             ? 'bg-cyan-500/10 border-cyan-500/25 text-cyan-400'
-                            : 'bg-slate-950 border-slate-800 text-slate-500 hover:text-slate-200 hover:border-slate-700'
+                            : 'bg-white border-slate-200 text-slate-500 hover:text-slate-800 hover:border-blue-300'
                         }`}
                       >
                         <FiBookmark className={`w-4 h-4 ${q.isBookmarked ? 'fill-cyan-400' : ''}`} />
@@ -265,7 +265,7 @@ const Categories = () => {
                     {/* Enter question button */}
                     <Link
                       to={`/categories/${q.role.toLowerCase().replace(/\s+/g, '-')}/${q._id}`}
-                      className="flex items-center gap-1 px-4 py-2.5 bg-slate-900 hover:bg-indigo-600 hover:text-white border border-slate-800 hover:border-indigo-500 text-indigo-400 text-xs font-bold rounded-xl transition-all duration-200"
+                      className="flex items-center gap-1 px-4 py-2.5 bg-blue-50 hover:bg-indigo-600 hover:text-white border border-blue-200 hover:border-indigo-500 text-blue-600 text-xs font-bold rounded-xl transition-all duration-200"
                     >
                       <span>Practice</span>
                       <FiChevronRight className="w-4 h-4" />
@@ -276,7 +276,7 @@ const Categories = () => {
             </div>
           ) : (
             <div className="glass-panel rounded-3xl py-14 text-center text-slate-500 text-sm">
-              <FiBookOpen className="w-8 h-8 mx-auto text-slate-700 mb-3" />
+              <FiBookOpen className="w-8 h-8 mx-auto text-slate-400 mb-3" />
               No questions found matching the chosen search queries or filters.
             </div>
           )}

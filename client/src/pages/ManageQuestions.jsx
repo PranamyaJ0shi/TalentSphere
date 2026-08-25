@@ -168,9 +168,9 @@ const ManageQuestions = () => {
   });
 
   const diffStyles = {
-    Easy: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
-    Medium: 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
-    Hard: 'bg-rose-500/10 text-rose-400 border border-rose-500/20',
+    Easy: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
+    Medium: 'bg-amber-50 text-amber-600 border border-amber-200',
+    Hard: 'bg-rose-50 text-rose-600 border border-rose-200',
   };
 
   return (
@@ -178,10 +178,10 @@ const ManageQuestions = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-slate-100 bg-gradient-to-r from-white via-slate-100 to-indigo-300 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-extrabold text-slate-800 bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
             Manage Questions
           </h1>
-          <p className="text-slate-400 mt-1 text-sm">
+          <p className="text-slate-500 mt-1 text-sm">
             Widescreen control panel to review, create, edit, or delete technical questions from the database.
           </p>
         </div>
@@ -198,7 +198,7 @@ const ManageQuestions = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {/* Search */}
         <div className="relative sm:col-span-2">
-          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
             <FiSearch className="w-5 h-5" />
           </div>
           <input
@@ -206,18 +206,18 @@ const ManageQuestions = () => {
             placeholder="Search questions by title, concepts, or tags..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="block w-full pl-11 pr-4 py-3 bg-slate-900/40 border border-slate-800/80 rounded-2xl text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
+            className="block w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
           />
         </div>
         {/* Role filter */}
         <select
           value={roleFilter}
           onChange={(e) => setRoleFilter(e.target.value)}
-          className="block w-full px-4 py-3 bg-slate-900/40 border border-slate-800/80 rounded-2xl text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm appearance-none cursor-pointer"
+          className="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm appearance-none cursor-pointer"
         >
           <option value="All">All Categories</option>
           {categories.map((cat) => (
-            <option key={cat._id} value={cat.name}>
+            <option key={cat._id} value={cat.name} className="bg-white">
               {cat.name}
             </option>
           ))}
@@ -228,7 +228,7 @@ const ManageQuestions = () => {
       {loading ? (
         <div className="space-y-4 animate-pulse">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-20 bg-slate-900 rounded-2xl shimmer"></div>
+            <div key={i} className="h-20 bg-slate-200 rounded-2xl shimmer"></div>
           ))}
         </div>
       ) : (
@@ -237,7 +237,7 @@ const ManageQuestions = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-900/40 border-b border-slate-900 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                  <tr className="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase tracking-wider">
                     <th className="px-6 py-4.5">Title</th>
                     <th className="px-6 py-4.5">Target Role</th>
                     <th className="px-6 py-4.5">Difficulty</th>
@@ -245,20 +245,20 @@ const ManageQuestions = () => {
                     <th className="px-6 py-4.5 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-900/50 text-sm">
+                <tbody className="divide-y divide-slate-200 text-sm">
                   {filteredQuestions.map((q) => (
-                    <tr key={q._id} className="hover:bg-slate-900/10 transition-colors">
+                    <tr key={q._id} className="hover:bg-slate-50 transition-colors">
                       <td className="px-6 py-4.5">
-                        <div className="font-bold text-slate-200 max-w-sm truncate">{q.title}</div>
+                        <div className="font-bold text-slate-700 max-w-sm truncate">{q.title}</div>
                         <div className="flex gap-1 mt-1">
                           {q.tags.slice(0, 3).map((t) => (
-                            <span key={t} className="text-[9px] bg-slate-950 text-slate-500 border border-slate-900 px-1.5 py-0.5 rounded-md font-semibold">
+                            <span key={t} className="text-[9px] bg-slate-100 text-slate-600 border border-slate-200 px-1.5 py-0.5 rounded-md font-semibold">
                               #{t}
                             </span>
                           ))}
                         </div>
                       </td>
-                      <td className="px-6 py-4.5 text-slate-400 font-semibold">{q.role}</td>
+                      <td className="px-6 py-4.5 text-slate-500 font-semibold">{q.role}</td>
                       <td className="px-6 py-4.5">
                         <span className={`px-2 py-0.5 rounded-md font-bold text-xs ${diffStyles[q.difficulty]}`}>
                           {q.difficulty}
@@ -269,14 +269,14 @@ const ManageQuestions = () => {
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => handleOpenEdit(q)}
-                            className="p-2 text-indigo-400 hover:text-indigo-300 hover:bg-slate-950 border border-slate-850 rounded-xl transition-all"
+                            className="p-2 text-blue-600 hover:text-blue-500 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all"
                             title="Edit question parameters"
                           >
                             <FiEdit className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => handleDeleteQuestion(q._id)}
-                            className="p-2 text-rose-500 hover:text-rose-400 hover:bg-slate-950 border border-slate-850 rounded-xl transition-all"
+                            className="p-2 text-rose-500 hover:text-rose-400 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all"
                             title="Delete question permanently"
                           >
                             <FiTrash2 className="w-4 h-4" />
@@ -290,7 +290,7 @@ const ManageQuestions = () => {
             </div>
           ) : (
             <div className="py-14 text-center text-slate-500">
-              <FiBookOpen className="w-8 h-8 mx-auto text-slate-700 mb-3" />
+              <FiBookOpen className="w-8 h-8 mx-auto text-slate-400 mb-3" />
               No questions found. Click "Add New Question" to populate the database.
             </div>
           )}
@@ -315,17 +315,17 @@ const ManageQuestions = () => {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-slate-950 border border-slate-800 rounded-3xl p-6.5 w-full max-w-2xl z-10 relative overflow-hidden shadow-2xl"
+              className="bg-white border border-slate-200 rounded-3xl p-6.5 w-full max-w-2xl z-10 relative overflow-hidden shadow-xl"
             >
               {/* Close Button */}
               <button
                 onClick={() => setModalOpen(false)}
-                className="absolute top-4 right-4 p-2 text-slate-500 hover:text-slate-200 hover:bg-slate-900 rounded-xl transition-colors"
+                className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors"
               >
                 <FiX className="w-5 h-5" />
               </button>
 
-              <h3 className="text-xl font-bold text-slate-200 mb-5 flex items-center gap-2">
+              <h3 className="text-xl font-bold text-slate-700 mb-5 flex items-center gap-2">
                 {editingQuestion ? 'Edit Interview Question' : 'Add Interview Question'}
               </h3>
 
@@ -345,12 +345,12 @@ const ManageQuestions = () => {
 
                 {/* Title */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Question Title</label>
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Question Title</label>
                   <input
                     type="text"
                     {...register('title', { required: 'Title is required' })}
                     placeholder="e.g. Explain JavaScript Promises and async/await syntax"
-                    className="block w-full px-4 py-2.5 bg-slate-900 border border-slate-800/80 rounded-xl text-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm placeholder-slate-600"
+                    className="block w-full px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm placeholder-slate-400"
                   />
                   {errors.title && <p className="mt-1 text-xs text-rose-400">{errors.title.message}</p>}
                 </div>
@@ -358,13 +358,13 @@ const ManageQuestions = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {/* Category Role Selector */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Target Interview Role</label>
+                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Target Interview Role</label>
                     <select
                       {...register('role', { required: 'Role is required' })}
-                      className="block w-full px-4 py-2.5 bg-slate-900 border border-slate-800/80 rounded-xl text-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm appearance-none cursor-pointer"
+                      className="block w-full px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm appearance-none cursor-pointer"
                     >
                       {categories.map((cat) => (
-                        <option key={cat._id} value={cat.name}>
+                        <option key={cat._id} value={cat.name} className="bg-white">
                           {cat.name}
                         </option>
                       ))}
@@ -373,58 +373,58 @@ const ManageQuestions = () => {
 
                   {/* Difficulty */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Difficulty</label>
+                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Difficulty</label>
                     <select
                       {...register('difficulty')}
-                      className="block w-full px-4 py-2.5 bg-slate-900 border border-slate-800/80 rounded-xl text-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm appearance-none cursor-pointer"
+                      className="block w-full px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm appearance-none cursor-pointer"
                     >
-                      <option value="Easy">Easy</option>
-                      <option value="Medium">Medium</option>
-                      <option value="Hard">Hard</option>
+                      <option value="Easy" className="bg-white">Easy</option>
+                      <option value="Medium" className="bg-white">Medium</option>
+                      <option value="Hard" className="bg-white">Hard</option>
                     </select>
                   </div>
 
                   {/* Est Time */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Est. Duration (Mins)</label>
+                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Est. Duration (Mins)</label>
                     <input
                       type="number"
                       {...register('estimatedTime', { required: 'Time limit required', min: 1 })}
-                      className="block w-full px-4 py-2.5 bg-slate-900 border border-slate-800/80 rounded-xl text-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm"
+                      className="block w-full px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm"
                     />
                   </div>
                 </div>
 
                 {/* Description */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Detailed Question Description</label>
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Detailed Question Description</label>
                   <textarea
                     {...register('description', { required: 'Description is required' })}
                     placeholder="Provide additional details, code snippets, or prompt requirements here..."
-                    className="block w-full h-24 px-4 py-2.5 bg-slate-900 border border-slate-800/80 rounded-xl text-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm resize-none placeholder-slate-600"
+                    className="block w-full h-24 px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm resize-none placeholder-slate-400"
                   />
                   {errors.description && <p className="mt-1 text-xs text-rose-400">{errors.description.message}</p>}
                 </div>
 
                 {/* Expected Reference Answer */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Expected Reference Answer (for AI Evaluator)</label>
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Expected Reference Answer (for AI Evaluator)</label>
                   <textarea
                     {...register('expectedAnswer', { required: 'Reference answer is required' })}
                     placeholder="Write down the key concepts, phrases, vocabulary, and explanation summary expected in student submissions..."
-                    className="block w-full h-28 px-4 py-2.5 bg-slate-900 border border-slate-800/80 rounded-xl text-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm resize-none placeholder-slate-600"
+                    className="block w-full h-28 px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm resize-none placeholder-slate-400"
                   />
                   {errors.expectedAnswer && <p className="mt-1 text-xs text-rose-400">{errors.expectedAnswer.message}</p>}
                 </div>
 
                 {/* Tags */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Tags (Comma-separated)</label>
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Tags (Comma-separated)</label>
                   <input
                     type="text"
                     {...register('tags')}
                     placeholder="JavaScript, Promises, Async-Await, WebDev"
-                    className="block w-full px-4 py-2.5 bg-slate-900 border border-slate-800/80 rounded-xl text-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm placeholder-slate-600"
+                    className="block w-full px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm placeholder-slate-400"
                   />
                 </div>
 

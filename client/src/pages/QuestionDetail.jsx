@@ -189,10 +189,10 @@ const QuestionDetail = () => {
   if (loading) {
     return (
       <div className="space-y-8 animate-pulse">
-        <div className="flex justify-between items-center h-10 bg-slate-900 rounded-xl shimmer"></div>
+        <div className="flex justify-between items-center h-10 bg-slate-200 rounded-xl shimmer"></div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="h-[500px] bg-slate-900 rounded-3xl shimmer border border-slate-800/40"></div>
-          <div className="h-[500px] bg-slate-900 rounded-3xl shimmer border border-slate-800/40"></div>
+          <div className="h-[500px] bg-slate-200 rounded-3xl shimmer border border-slate-200"></div>
+          <div className="h-[500px] bg-slate-200 rounded-3xl shimmer border border-slate-200"></div>
         </div>
       </div>
     );
@@ -202,8 +202,8 @@ const QuestionDetail = () => {
     return (
       <div className="glass-panel rounded-3xl py-14 text-center">
         <FiAlertCircle className="w-12 h-12 mx-auto text-rose-500 mb-4" />
-        <h3 className="text-xl font-bold text-slate-200">Question not found</h3>
-        <p className="text-slate-400 mt-1 mb-6 text-sm">The question requested does not exist or has been deleted.</p>
+        <h3 className="text-xl font-bold text-slate-700">Question not found</h3>
+        <p className="text-slate-500 mt-1 mb-6 text-sm">The question requested does not exist or has been deleted.</p>
         <Link to="/categories" className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-semibold text-white">
           Back to categories
         </Link>
@@ -220,10 +220,10 @@ const QuestionDetail = () => {
   return (
     <div className="space-y-6">
       {/* Top back & navigation bar */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-900/20 border border-slate-900 p-4 rounded-2xl">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-50 border border-slate-200 p-4 rounded-2xl">
         <Link
           to="/categories"
-          className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors font-bold"
+          className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-700 transition-colors font-bold"
         >
           <FiArrowLeft className="w-4 h-4" /> Back to List
         </Link>
@@ -236,7 +236,7 @@ const QuestionDetail = () => {
           <button
             disabled={!prevQuestion}
             onClick={() => navigate(`/categories/${role}/${prevQuestion._id}`)}
-            className="p-2 bg-slate-900 border border-slate-800 disabled:opacity-30 rounded-xl hover:border-slate-700 text-slate-300 disabled:pointer-events-none transition-colors"
+            className="p-2 bg-white border border-slate-300 disabled:opacity-30 rounded-xl hover:border-blue-300 text-slate-800 disabled:pointer-events-none transition-colors"
             title="Previous Question"
           >
             <FiChevronLeft className="w-4 h-4" />
@@ -244,7 +244,7 @@ const QuestionDetail = () => {
           <button
             disabled={!nextQuestion}
             onClick={() => navigate(`/categories/${role}/${nextQuestion._id}`)}
-            className="p-2 bg-slate-900 border border-slate-800 disabled:opacity-30 rounded-xl hover:border-slate-700 text-slate-300 disabled:pointer-events-none transition-colors"
+            className="p-2 bg-white border border-slate-300 disabled:opacity-30 rounded-xl hover:border-blue-300 text-slate-800 disabled:pointer-events-none transition-colors"
             title="Next Question"
           >
             <FiArrowRight className="w-4 h-4" />
@@ -259,32 +259,32 @@ const QuestionDetail = () => {
           <div className="space-y-5">
             {/* Meta badges */}
             <div className="flex flex-wrap items-center gap-2.5 text-xs">
-              <span className="bg-slate-950 text-slate-400 font-bold px-2 py-0.5 rounded-md border border-slate-800/40">
+              <span className="bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-md border border-slate-200">
                 {question.role}
               </span>
               <span className={`px-2 py-0.5 rounded-md font-bold ${diffStyles[question.difficulty]}`}>
                 {question.difficulty}
               </span>
-              <span className="text-slate-400 flex items-center gap-1.5 font-medium">
+              <span className="text-slate-500 flex items-center gap-1.5 font-medium">
                 <FiClock className="w-4 h-4" /> {question.estimatedTime} mins limit
               </span>
             </div>
 
             {/* Title */}
-            <h2 className="text-xl font-bold text-slate-100 leading-snug">{question.title}</h2>
+            <h2 className="text-xl font-bold text-slate-800 leading-snug">{question.title}</h2>
 
             {/* Divider */}
-            <div className="h-px bg-slate-800/60" />
+            <div className="h-px bg-slate-200" />
 
             {/* Description Body */}
-            <div className="text-sm text-slate-300 leading-relaxed whitespace-pre-line bg-slate-950/40 p-4.5 rounded-2xl border border-slate-900/60">
+            <div className="text-sm text-slate-600 leading-relaxed whitespace-pre-line bg-slate-50 p-4.5 rounded-2xl border border-slate-200">
               {question.description}
             </div>
 
             {/* Tags list */}
             <div className="flex flex-wrap gap-1.5 pt-2">
               {question.tags.map((tag) => (
-                <span key={tag} className="text-xs bg-slate-950/60 text-slate-500 px-3 py-1 rounded-full border border-slate-800/40 font-medium">
+                <span key={tag} className="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full border border-slate-200 font-medium">
                   #{tag}
                 </span>
               ))}
@@ -292,10 +292,10 @@ const QuestionDetail = () => {
           </div>
 
           {/* Reference Info Warning */}
-          <div className="bg-indigo-950/20 border border-indigo-900/30 p-4 rounded-2xl text-xs text-indigo-400 flex gap-2.5 items-start">
+          <div className="bg-blue-50 border border-blue-200 p-4 rounded-2xl text-xs text-blue-600 flex gap-2.5 items-start">
             <FiInfo className="w-5 h-5 flex-shrink-0 mt-0.5" />
             <div>
-              <h5 className="font-semibold text-slate-200 mb-0.5">AI Practice Guidelines</h5>
+              <h5 className="font-semibold text-slate-800 mb-0.5">AI Practice Guidelines</h5>
               <p className="leading-relaxed">
                 Provide a complete structural explanation. Outline definitions, advantages, and real-world examples. AI scores are based on conceptual keyword coverage.
               </p>
@@ -307,21 +307,21 @@ const QuestionDetail = () => {
         <div className="lg:col-span-7 glass-panel rounded-3xl p-6 flex flex-col justify-between space-y-4">
           <div className="space-y-4">
             {/* Editor Top Bar (Timer and Actions) */}
-            <div className="flex justify-between items-center flex-wrap gap-3 pb-3 border-b border-slate-800/50">
+            <div className="flex justify-between items-center flex-wrap gap-3 pb-3 border-b border-slate-200">
               {/* Count-up Timer */}
-              <div className="flex items-center gap-2.5 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-900">
-                <FiClock className={`w-4 h-4 ${timerRunning ? 'text-indigo-400 animate-pulse' : 'text-slate-500'}`} />
-                <span className="font-mono text-sm text-slate-300 tracking-wider">{formatTime(time)}</span>
+              <div className="flex items-center gap-2.5 bg-white px-3 py-1.5 rounded-xl border border-slate-300">
+                <FiClock className={`w-4 h-4 ${timerRunning ? 'text-blue-600 animate-pulse' : 'text-slate-400'}`} />
+                <span className="font-mono text-sm text-slate-700 tracking-wider">{formatTime(time)}</span>
                 <button
                   onClick={() => setTimerRunning(!timerRunning)}
-                  className="p-1 hover:text-white text-slate-500 transition-colors"
+                  className="p-1 hover:text-slate-800 text-slate-400 transition-colors"
                   title={timerRunning ? 'Pause Timer' : 'Resume Timer'}
                 >
                   {timerRunning ? <FiPause className="w-3.5 h-3.5" /> : <FiPlay className="w-3.5 h-3.5" />}
                 </button>
                 <button
                   onClick={() => setTime(0)}
-                  className="p-1 hover:text-white text-slate-500 transition-colors"
+                  className="p-1 hover:text-slate-800 text-slate-400 transition-colors"
                   title="Reset Timer"
                 >
                   <FiRotateCcw className="w-3.5 h-3.5" />
@@ -339,7 +339,7 @@ const QuestionDetail = () => {
 
                 <button
                   onClick={handleManualSave}
-                  className="p-2.5 bg-slate-950 border border-slate-900 hover:border-slate-800 rounded-xl text-slate-400 hover:text-slate-200 transition-colors"
+                  className="p-2.5 bg-white border border-slate-300 hover:border-blue-300 rounded-xl text-slate-500 hover:text-slate-800 transition-colors"
                   title="Save Draft Locally"
                 >
                   <FiSave className="w-4 h-4" />
@@ -349,8 +349,8 @@ const QuestionDetail = () => {
                   onClick={handleToggleBookmark}
                   className={`p-2.5 rounded-xl border transition-colors ${
                     isBookmarked
-                      ? 'bg-cyan-500/10 border-cyan-500/25 text-cyan-400'
-                      : 'bg-slate-950 border-slate-900 text-slate-400 hover:text-slate-200 hover:border-slate-850'
+                      ? 'bg-cyan-500/10 border-cyan-500/25 text-cyan-600'
+                      : 'bg-white border-slate-300 text-slate-500 hover:text-slate-800 hover:border-blue-300'
                   }`}
                   title="Bookmark Question"
                 >
@@ -366,7 +366,7 @@ const QuestionDetail = () => {
                 onChange={(e) => setAnswer(e.target.value)}
                 placeholder="Write your detailed explanation here..."
                 disabled={submitting}
-                className="w-full h-80 bg-slate-950/60 border border-slate-900 rounded-2xl p-4.5 text-sm text-slate-300 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all font-mono resize-none focus:bg-slate-950"
+                className="w-full h-80 bg-white border border-slate-300 rounded-2xl p-4.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all font-mono resize-none focus:bg-white"
               />
             </div>
 
@@ -382,14 +382,14 @@ const QuestionDetail = () => {
           </div>
 
           {/* Submission and navigation buttons */}
-          <div className="flex justify-between items-center pt-4 border-t border-slate-800/40">
+          <div className="flex justify-between items-center pt-4 border-t border-slate-200">
             <button
               onClick={() => {
                 setAnswer('');
                 localStorage.removeItem(`draft_ans_${id}`);
               }}
               disabled={submitting || !answer}
-              className="px-4 py-2.5 text-xs text-slate-500 hover:text-rose-400 font-bold hover:bg-rose-950/15 rounded-xl transition-all"
+              className="px-4 py-2.5 text-xs text-slate-500 hover:text-rose-400 font-bold hover:bg-rose-50 rounded-xl transition-all"
             >
               Clear Draft
             </button>
@@ -425,7 +425,7 @@ const QuestionDetail = () => {
               animate={{ opacity: 0.7 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowEvalModal(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm"
+              className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm"
             />
 
             {/* Modal Content */}
@@ -434,11 +434,11 @@ const QuestionDetail = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 26, stiffness: 220 }}
-              className="h-full sm:h-[95vh] w-full sm:max-w-xl bg-slate-950 border-l border-slate-900 p-6 sm:p-8 overflow-y-auto shadow-2xl relative sm:rounded-3xl z-10"
+              className="h-full sm:h-[95vh] w-full sm:max-w-xl bg-white border-l border-slate-200 p-6 sm:p-8 overflow-y-auto shadow-2xl relative sm:rounded-3xl z-10"
             >
               <button
                 onClick={() => setShowEvalModal(false)}
-                className="absolute top-6 right-6 p-2 text-slate-400 hover:text-white hover:bg-slate-900 rounded-xl transition-colors"
+                className="absolute top-6 right-6 p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition-colors"
               >
                 <FiX className="w-5 h-5" />
               </button>
@@ -446,20 +446,20 @@ const QuestionDetail = () => {
               <div className="space-y-6 pt-4">
                 {/* Header title */}
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-600/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shadow-md">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shadow-md">
                     <FiAward className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-slate-200">AI Evaluation Report</h3>
+                    <h3 className="text-xl font-black text-slate-800">AI Evaluation Report</h3>
                     <p className="text-xs text-slate-500 mt-0.5">Automated technical performance review.</p>
                   </div>
                 </div>
 
                 {/* Score gauge and completeness badge */}
-                <div className="bg-slate-900/60 border border-slate-800/80 p-5 rounded-2xl grid grid-cols-2 gap-4 text-center">
-                  <div className="border-r border-slate-800/50 py-2">
+                <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl grid grid-cols-2 gap-4 text-center">
+                  <div className="border-r border-slate-200 py-2">
                     <span className="text-[10px] uppercase font-semibold text-slate-500 tracking-wider block">Evaluation Score</span>
-                    <span className="text-3xl font-black text-slate-100 mt-1 block">{evalResult.score}/100</span>
+                    <span className="text-3xl font-black text-slate-800 mt-1 block">{evalResult.score}/100</span>
                   </div>
                   <div className="py-2">
                     <span className="text-[10px] uppercase font-semibold text-slate-500 tracking-wider block">Performance Grade</span>
@@ -478,14 +478,14 @@ const QuestionDetail = () => {
                 </div>
 
                 {/* Feedback markdown block */}
-                <div className="prose prose-invert max-w-none text-sm text-slate-300 leading-relaxed bg-slate-950 border border-slate-900 p-5 rounded-2xl space-y-4">
+                <div className="prose max-w-none text-sm text-slate-700 leading-relaxed bg-white border border-slate-200 p-5 rounded-2xl space-y-4">
                   {/* Since evaluator output is formatted in markdown, we can safely split and render headers/lists visually */}
                   {evalResult.feedback.split('\n\n').map((block, i) => {
                     if (block.startsWith('### ')) {
-                      return <h4 key={i} className="text-base font-extrabold text-slate-200 mt-4 border-b border-slate-900 pb-2">{block.replace('### ', '')}</h4>;
+                      return <h4 key={i} className="text-base font-extrabold text-slate-700 mt-4 border-b border-slate-200 pb-2">{block.replace('### ', '')}</h4>;
                     }
                     if (block.startsWith('#### ')) {
-                      return <h5 key={i} className="text-sm font-bold text-slate-300 mt-3">{block.replace('#### ', '')}</h5>;
+                      return <h5 key={i} className="text-sm font-bold text-slate-600 mt-3">{block.replace('#### ', '')}</h5>;
                     }
                     if (block.includes(' - [')) {
                       return (
@@ -495,24 +495,24 @@ const QuestionDetail = () => {
                             const lineText = line.replace(/ - \[[x\s]\]\s*/g, '');
                             return (
                               <li key={j} className="flex items-center gap-2 text-xs">
-                                <span className={isChecked ? 'text-indigo-400' : 'text-slate-600'}>
+                                <span className={isChecked ? 'text-blue-600' : 'text-slate-400'}>
                                   {isChecked ? <FiCheckCircle className="w-4 h-4 shrink-0" /> : <FiAlertCircle className="w-4 h-4 shrink-0" />}
                                 </span>
-                                <span className={isChecked ? 'text-slate-300' : 'text-slate-500 line-through decoration-slate-800'}>{lineText}</span>
+                                <span className={isChecked ? 'text-slate-700' : 'text-slate-500 line-through decoration-slate-300'}>{lineText}</span>
                               </li>
                             );
                           })}
                         </ul>
                       );
                     }
-                    return <p key={i} className="leading-relaxed whitespace-pre-line text-slate-400">{block}</p>;
+                    return <p key={i} className="leading-relaxed whitespace-pre-line text-slate-600">{block}</p>;
                   })}
                 </div>
 
                 {/* Reference Solution Expansion */}
-                <div className="bg-indigo-950/15 border border-indigo-900/30 p-5 rounded-2xl space-y-2">
-                  <h4 className="text-sm font-bold text-indigo-400">Reference Answer Key</h4>
-                  <p className="text-xs text-slate-400 leading-relaxed whitespace-pre-line">
+                <div className="bg-blue-50 border border-blue-200 p-5 rounded-2xl space-y-2">
+                  <h4 className="text-sm font-bold text-blue-600">Reference Answer Key</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed whitespace-pre-line">
                     {question.expectedAnswer}
                   </p>
                 </div>
@@ -520,7 +520,7 @@ const QuestionDetail = () => {
                 {/* Footer close button */}
                 <button
                   onClick={() => setShowEvalModal(false)}
-                  className="w-full py-3 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 rounded-xl text-xs font-semibold tracking-wider transition-colors uppercase"
+                  className="w-full py-3 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-700 rounded-xl text-xs font-semibold tracking-wider transition-colors uppercase shadow-sm"
                 >
                   Continue Practicing
                 </button>

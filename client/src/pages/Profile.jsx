@@ -68,10 +68,10 @@ const Profile = () => {
     <div className="space-y-8 max-w-2xl mx-auto">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold text-slate-100 bg-gradient-to-r from-white via-slate-100 to-indigo-300 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-extrabold text-slate-800 bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
           Account Profile
         </h1>
-        <p className="text-slate-400 mt-1 text-sm">
+        <p className="text-slate-500 mt-1 text-sm">
           Manage your personal details, verify email settings, and keep your password secure.
         </p>
       </div>
@@ -79,18 +79,18 @@ const Profile = () => {
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-panel rounded-3xl p-6.5 border-slate-800/80"
+        className="glass-panel rounded-3xl p-6.5 border-none"
       >
         {/* Profile Card Header */}
-        <div className="flex items-center gap-5 pb-6 border-b border-slate-900 mb-6">
+        <div className="flex items-center gap-5 pb-6 mb-6">
           <img
             src={user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || '')}&background=4f46e5&color=fff`}
             alt={user?.name}
-            className="w-18 h-18 rounded-2xl border border-slate-800 object-cover shadow-lg"
+            className="w-18 h-18 rounded-2xl object-cover shadow-lg"
           />
           <div>
-            <h3 className="text-lg font-bold text-slate-200">{user?.name}</h3>
-            <span className="text-[10px] bg-slate-900 border border-slate-800 text-indigo-400 font-bold px-2 py-0.5 rounded-md uppercase tracking-wider block w-max mt-1">
+            <h3 className="text-lg font-bold text-slate-700">{user?.name}</h3>
+            <span className="text-[10px] bg-blue-50 text-blue-600 font-bold px-2 py-0.5 rounded-md uppercase tracking-wider block w-max mt-1">
               Account Role: {user?.role}
             </span>
           </div>
@@ -114,7 +114,7 @@ const Profile = () => {
 
           {/* Name */}
           <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
               Full Name
             </label>
             <div className="relative">
@@ -124,7 +124,7 @@ const Profile = () => {
               <input
                 type="text"
                 {...register('name', { required: 'Name is required' })}
-                className="block w-full pl-11 pr-4 py-3 bg-slate-950/80 border border-slate-900 rounded-xl text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium"
+                className="block w-full pl-11 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium"
               />
             </div>
             {errors.name && (
@@ -136,7 +136,7 @@ const Profile = () => {
 
           {/* Email */}
           <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
               Email Address
             </label>
             <div className="relative">
@@ -152,7 +152,7 @@ const Profile = () => {
                     message: 'Please enter a valid email address',
                   },
                 })}
-                className="block w-full pl-11 pr-4 py-3 bg-slate-950/80 border border-slate-900 rounded-xl text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium"
+                className="block w-full pl-11 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium"
               />
             </div>
             {errors.email && (
@@ -163,14 +163,14 @@ const Profile = () => {
           </div>
 
           {/* Password Heading Divider */}
-          <div className="pt-4 border-t border-slate-900">
-            <h4 className="text-sm font-bold text-slate-200 mb-0.5">Change Password</h4>
+          <div className="pt-4">
+            <h4 className="text-sm font-bold text-slate-700 mb-0.5">Change Password</h4>
             <p className="text-xs text-slate-500">Leave these blank if you do not want to change your password.</p>
           </div>
 
           {/* New Password */}
           <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
               New Password
             </label>
             <div className="relative">
@@ -186,7 +186,7 @@ const Profile = () => {
                     message: 'Password must be at least 6 characters',
                   },
                 })}
-                className="block w-full pl-11 pr-4 py-3 bg-slate-950/80 border border-slate-900 rounded-xl text-slate-200 placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium"
+                className="block w-full pl-11 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium"
               />
             </div>
             {errors.newPassword && (
@@ -198,7 +198,7 @@ const Profile = () => {
 
           {/* Confirm Password */}
           <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
               Confirm New Password
             </label>
             <div className="relative">
@@ -212,7 +212,7 @@ const Profile = () => {
                   validate: (value) =>
                     !newPassword || value === newPassword || 'New passwords do not match',
                 })}
-                className="block w-full pl-11 pr-4 py-3 bg-slate-950/80 border border-slate-900 rounded-xl text-slate-200 placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium"
+                className="block w-full pl-11 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium"
               />
             </div>
             {errors.confirmNewPassword && (

@@ -120,10 +120,10 @@ const ManageCategories = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-slate-100 bg-gradient-to-r from-white via-slate-100 to-indigo-300 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-extrabold text-slate-800 bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
             Manage Categories
           </h1>
-          <p className="text-slate-400 mt-1 text-sm">
+          <p className="text-slate-500 mt-1 text-sm">
             Control panel to add new interview job roles, edit descriptions, or remove categories from the registry.
           </p>
         </div>
@@ -140,7 +140,7 @@ const ManageCategories = () => {
       {loading ? (
         <div className="space-y-4 animate-pulse">
           {[1, 2].map((i) => (
-            <div key={i} className="h-20 bg-slate-900 rounded-2xl shimmer"></div>
+            <div key={i} className="h-20 bg-slate-200 rounded-2xl shimmer"></div>
           ))}
         </div>
       ) : (
@@ -149,31 +149,31 @@ const ManageCategories = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-sm">
                 <thead>
-                  <tr className="bg-slate-900/40 border-b border-slate-900 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                  <tr className="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase tracking-wider">
                     <th className="px-6 py-4.5">Category Name</th>
                     <th className="px-6 py-4.5">Generated Slug</th>
                     <th className="px-6 py-4.5">Description</th>
                     <th className="px-6 py-4.5 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-900/50">
+                <tbody className="divide-y divide-slate-200">
                   {categories.map((cat) => (
-                    <tr key={cat._id} className="hover:bg-slate-900/10 transition-colors">
-                      <td className="px-6 py-4.5 font-bold text-slate-200">{cat.name}</td>
-                      <td className="px-6 py-4.5 font-mono text-xs text-indigo-400">/{cat.slug}</td>
-                      <td className="px-6 py-4.5 text-slate-400 max-w-sm truncate">{cat.description}</td>
+                    <tr key={cat._id} className="hover:bg-slate-50 transition-colors">
+                      <td className="px-6 py-4.5 font-bold text-slate-700">{cat.name}</td>
+                      <td className="px-6 py-4.5 font-mono text-xs text-blue-600">/{cat.slug}</td>
+                      <td className="px-6 py-4.5 text-slate-500 max-w-sm truncate">{cat.description}</td>
                       <td className="px-6 py-4.5 text-right">
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => handleOpenEdit(cat)}
-                            className="p-2 text-indigo-400 hover:text-indigo-300 hover:bg-slate-950 border border-slate-850 rounded-xl transition-all"
+                            className="p-2 text-blue-600 hover:text-blue-500 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all"
                             title="Edit Category details"
                           >
                             <FiEdit className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => handleDeleteCategory(cat._id)}
-                            className="p-2 text-rose-500 hover:text-rose-400 hover:bg-slate-950 border border-slate-850 rounded-xl transition-all"
+                            className="p-2 text-rose-500 hover:text-rose-400 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all"
                             title="Delete Category"
                           >
                             <FiTrash2 className="w-4 h-4" />
@@ -187,7 +187,7 @@ const ManageCategories = () => {
             </div>
           ) : (
             <div className="py-14 text-center text-slate-500">
-              <FiFolder className="w-8 h-8 mx-auto text-slate-700 mb-3" />
+              <FiFolder className="w-8 h-8 mx-auto text-slate-400 mb-3" />
               No categories registered. Click "Add New Category" to populate the database.
             </div>
           )}
@@ -212,16 +212,16 @@ const ManageCategories = () => {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-slate-950 border border-slate-800 rounded-3xl p-6.5 w-full max-w-lg z-10 relative overflow-hidden shadow-2xl"
+              className="bg-white border border-slate-200 rounded-3xl p-6.5 w-full max-w-lg z-10 relative overflow-hidden shadow-xl"
             >
               <button
                 onClick={() => setModalOpen(false)}
-                className="absolute top-4 right-4 p-2 text-slate-500 hover:text-slate-200 hover:bg-slate-900 rounded-xl transition-colors"
+                className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors"
               >
                 <FiX className="w-5 h-5" />
               </button>
 
-              <h3 className="text-xl font-bold text-slate-200 mb-5">
+              <h3 className="text-xl font-bold text-slate-700 mb-5">
                 {editingCategory ? 'Edit Category Role' : 'Add Category Role'}
               </h3>
 
@@ -241,23 +241,23 @@ const ManageCategories = () => {
 
                 {/* Name */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Category Name</label>
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Category Name</label>
                   <input
                     type="text"
                     {...register('name', { required: 'Category name is required' })}
                     placeholder="e.g. MERN Developer"
-                    className="block w-full px-4 py-2.5 bg-slate-900 border border-slate-800/80 rounded-xl text-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm placeholder-slate-600"
+                    className="block w-full px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm placeholder-slate-400"
                   />
                   {errors.name && <p className="mt-1 text-xs text-rose-400">{errors.name.message}</p>}
                 </div>
 
                 {/* Description */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Category Description</label>
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Category Description</label>
                   <textarea
                     {...register('description')}
                     placeholder="Provide details about standard skill topics covered under this interview role..."
-                    className="block w-full h-28 px-4 py-2.5 bg-slate-900 border border-slate-800/80 rounded-xl text-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm resize-none placeholder-slate-600"
+                    className="block w-full h-28 px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 focus:outline-none focus:ring-1 focus:ring-rose-500 text-sm resize-none placeholder-slate-400"
                   />
                 </div>
 

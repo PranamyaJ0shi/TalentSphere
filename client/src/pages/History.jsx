@@ -57,11 +57,11 @@ const History = () => {
   if (loading) {
     return (
       <div className="space-y-6 animate-pulse">
-        <div className="h-10 w-1/4 bg-slate-900 rounded-xl shimmer"></div>
-        <div className="h-12 bg-slate-900 rounded-2xl shimmer"></div>
+        <div className="h-10 w-1/4 bg-slate-200 rounded-xl shimmer"></div>
+        <div className="h-12 bg-slate-200 rounded-2xl shimmer"></div>
         <div className="space-y-4">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-16 bg-slate-900 rounded-2xl shimmer"></div>
+            <div key={i} className="h-16 bg-slate-200 rounded-2xl shimmer"></div>
           ))}
         </div>
       </div>
@@ -78,28 +78,28 @@ const History = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold text-slate-100 bg-gradient-to-r from-white via-slate-100 to-indigo-300 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-extrabold text-slate-800 bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
           Practice History
         </h1>
-        <p className="text-slate-400 mt-1 text-sm">
+        <p className="text-slate-500 mt-1 text-sm">
           Review your past practice sessions, read detailed AI feedback, and monitor your score improvements.
         </p>
       </div>
 
       {/* Filters Bar */}
-      <div className="flex flex-col sm:flex-row gap-4 bg-slate-900/40 border border-slate-900 p-4 rounded-2xl">
-        <div className="flex-grow flex gap-2 items-center text-slate-500 text-xs uppercase font-bold px-2">
-          <FiFilter className="w-4 h-4 text-indigo-400" />
+      <div className="flex flex-col sm:flex-row gap-4 bg-slate-50 border border-slate-200 p-4 rounded-2xl">
+        <div className="flex-grow flex gap-2 items-center text-slate-600 text-xs uppercase font-bold px-2">
+          <FiFilter className="w-4 h-4 text-blue-600" />
           <span>Filter History</span>
         </div>
         {/* Role Filter */}
         <select
           value={roleFilter}
           onChange={(e) => setRoleFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-950 border border-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 text-xs font-semibold rounded-xl text-slate-300 appearance-none cursor-pointer"
+          className="px-4 py-2 bg-white border border-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 text-xs font-semibold rounded-xl text-slate-800 appearance-none cursor-pointer"
         >
           {uniqueRoles.map((role) => (
-            <option key={role} value={role}>
+            <option key={role} value={role} className="bg-white">
               {role === 'All' ? 'All Roles' : role}
             </option>
           ))}
@@ -108,21 +108,21 @@ const History = () => {
         <select
           value={diffFilter}
           onChange={(e) => setDiffFilter(e.target.value)}
-          className="px-4 py-2 bg-slate-950 border border-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 text-xs font-semibold rounded-xl text-slate-300 appearance-none cursor-pointer"
+          className="px-4 py-2 bg-white border border-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 text-xs font-semibold rounded-xl text-slate-800 appearance-none cursor-pointer"
         >
-          <option value="All">All Difficulties</option>
-          <option value="Easy">Easy</option>
-          <option value="Medium">Medium</option>
-          <option value="Hard">Hard</option>
+          <option value="All" className="bg-white">All Difficulties</option>
+          <option value="Easy" className="bg-white">Easy</option>
+          <option value="Medium" className="bg-white">Medium</option>
+          <option value="Hard" className="bg-white">Hard</option>
         </select>
       </div>
 
       {/* History List Table */}
       <div className="glass-panel rounded-3xl overflow-hidden">
         {filteredHistory.length > 0 ? (
-          <div className="divide-y divide-slate-900">
+          <div className="divide-y divide-slate-200">
             {/* Header row */}
-            <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-slate-900/30 text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-slate-50/80 text-xs font-bold text-slate-500 uppercase tracking-wider">
               <span className="col-span-2">Date</span>
               <span className="col-span-3">Question</span>
               <span className="col-span-3">Role</span>
@@ -141,25 +141,25 @@ const History = () => {
               });
 
               return (
-                <div key={item._id} className="transition-colors hover:bg-slate-900/20">
+                <div key={item._id} className="transition-colors hover:bg-slate-50/50">
                   <div
                     onClick={() => toggleExpand(item._id)}
                     className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-4.5 items-center cursor-pointer text-sm"
                   >
                     {/* Date */}
-                    <div className="col-span-2 text-slate-400 font-semibold flex items-center gap-1.5 md:block text-xs md:text-sm">
-                      <FiClock className="w-4 h-4 text-slate-500 md:hidden" />
+                    <div className="col-span-2 text-slate-500 font-semibold flex items-center gap-1.5 md:block text-xs md:text-sm">
+                      <FiClock className="w-4 h-4 text-slate-400 md:hidden" />
                       <span>{localDate}</span>
                     </div>
 
                     {/* Question title */}
-                    <div className="col-span-3 font-bold text-slate-200 truncate pr-4">
+                    <div className="col-span-3 font-bold text-slate-700 truncate pr-4">
                       {item.question}
                     </div>
 
                     {/* Role */}
-                    <div className="col-span-3 text-slate-400">
-                      <span className="md:hidden text-xs text-slate-500 uppercase font-semibold mr-1">Role:</span>
+                    <div className="col-span-3 text-slate-500">
+                      <span className="md:hidden text-xs text-slate-400 uppercase font-semibold mr-1">Role:</span>
                       {item.role}
                     </div>
 
@@ -188,7 +188,7 @@ const History = () => {
 
                     {/* Expand Trigger Icon */}
                     <div className="col-span-1 flex justify-end">
-                      <button className="p-1 text-slate-500 hover:text-slate-300">
+                      <button className="p-1 text-slate-400 hover:text-slate-600">
                         {isExpanded ? <FiChevronUp className="w-5 h-5" /> : <FiChevronDown className="w-5 h-5" />}
                       </button>
                     </div>
@@ -204,27 +204,27 @@ const History = () => {
                         transition={{ duration: 0.2 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 pb-6 pt-2 bg-slate-950/50 border-t border-slate-900/60 grid grid-cols-1 lg:grid-cols-2 gap-6 text-sm">
+                        <div className="px-6 pb-6 pt-2 bg-slate-50 border-t border-slate-200 grid grid-cols-1 lg:grid-cols-2 gap-6 text-sm">
                           {/* Answer submitted */}
                           <div className="space-y-2">
-                            <h5 className="font-bold text-slate-400 uppercase tracking-wider text-xs">Your Submitted Answer</h5>
-                            <div className="bg-slate-950 border border-slate-900 p-4.5 rounded-2xl font-mono text-xs text-slate-300 leading-relaxed h-64 overflow-y-auto whitespace-pre-wrap">
+                            <h5 className="font-bold text-slate-500 uppercase tracking-wider text-xs">Your Submitted Answer</h5>
+                            <div className="bg-white border border-slate-200 p-4.5 rounded-2xl font-mono text-xs text-slate-600 leading-relaxed h-64 overflow-y-auto whitespace-pre-wrap">
                               {item.submittedAnswer}
                             </div>
                           </div>
 
                           {/* AI Evaluation */}
                           <div className="space-y-2">
-                            <h5 className="font-bold text-indigo-400 uppercase tracking-wider text-xs flex items-center gap-1.5">
+                            <h5 className="font-bold text-blue-600 uppercase tracking-wider text-xs flex items-center gap-1.5">
                               <FiAward className="w-4 h-4" /> AI Grading Review
                             </h5>
-                            <div className="bg-slate-950 border border-indigo-950/20 p-4.5 rounded-2xl text-slate-300 leading-relaxed h-64 overflow-y-auto">
+                            <div className="bg-white border border-slate-200 p-4.5 rounded-2xl text-slate-600 leading-relaxed h-64 overflow-y-auto">
                               {item.feedback.split('\n\n').map((block, i) => {
                                 if (block.startsWith('### ')) {
-                                  return <h4 key={i} className="text-xs font-bold text-slate-200 mt-2 border-b border-slate-900 pb-1">{block.replace('### ', '')}</h4>;
+                                  return <h4 key={i} className="text-xs font-bold text-slate-700 mt-2 border-b border-slate-200 pb-1">{block.replace('### ', '')}</h4>;
                                 }
                                 if (block.startsWith('#### ')) {
-                                  return <h5 key={i} className="text-xs font-bold text-slate-400 mt-2">{block.replace('#### ', '')}</h5>;
+                                  return <h5 key={i} className="text-xs font-bold text-slate-500 mt-2">{block.replace('#### ', '')}</h5>;
                                 }
                                 if (block.includes(' - [')) {
                                   return (
@@ -232,8 +232,8 @@ const History = () => {
                                       {block.split('\n').map((line, j) => {
                                         const isChecked = line.includes('[x]');
                                         return (
-                                          <li key={j} className="flex items-center gap-1.5 text-xs text-slate-400">
-                                            {isChecked ? <FiCheckCircle className="text-indigo-400 w-3.5 h-3.5" /> : <FiAlertCircle className="text-slate-600 w-3.5 h-3.5" />}
+                                          <li key={j} className="flex items-center gap-1.5 text-xs text-slate-500">
+                                            {isChecked ? <FiCheckCircle className="text-blue-600 w-3.5 h-3.5" /> : <FiAlertCircle className="text-slate-400 w-3.5 h-3.5" />}
                                             <span>{line.replace(/ - \[[x\s]\]\s*/g, '')}</span>
                                           </li>
                                         );
@@ -241,16 +241,16 @@ const History = () => {
                                     </ul>
                                   );
                                 }
-                                return <p key={i} className="text-xs text-slate-400 mt-1">{block}</p>;
+                                return <p key={i} className="text-xs text-slate-500 mt-1">{block}</p>;
                               })}
 
                               {/* Link to Retry */}
                               {item.questionId && (
-                                <div className="mt-6 pt-4 border-t border-slate-900 flex justify-between items-center">
+                                <div className="mt-6 pt-4 border-t border-slate-200 flex justify-between items-center">
                                   <span className="text-[10px] text-slate-500">Need to improve score?</span>
                                   <Link
                                     to={`/categories/${item.role.toLowerCase().replace(/\s+/g, '-')}/${item.questionId}`}
-                                    className="flex items-center gap-1 text-xs text-indigo-400 hover:text-white font-bold"
+                                    className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 font-bold"
                                   >
                                     <span>Retry Question</span>
                                     <FiArrowRight className="w-3.5 h-3.5" />

@@ -45,21 +45,21 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Gradients */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-10">
         <div className="flex justify-center">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-500/15">
             <span className="text-white font-black text-2xl">TS</span>
           </div>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
+        <h2 className="mt-6 text-center text-3xl font-extrabold bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
           Set New Password
         </h2>
-        <p className="mt-2 text-center text-sm text-slate-400">
+        <p className="mt-2 text-center text-sm text-slate-500">
           Enter a new secure password for your TalentSphere account.
         </p>
       </div>
@@ -70,19 +70,19 @@ const ResetPassword = () => {
         transition={{ duration: 0.4 }}
         className="mt-8 sm:mx-auto sm:w-full sm:max-w-md z-10"
       >
-        <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 py-8 px-4 shadow-xl rounded-3xl sm:px-10">
+        <div className="bg-white/80 backdrop-blur-xl border border-slate-200 py-8 px-4 shadow-xl rounded-3xl sm:px-10">
           {success ? (
             <div className="space-y-4 text-center">
               <div className="w-12 h-12 bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-3">
                 <FiCheckCircle className="w-6 h-6" />
               </div>
-              <h4 className="text-lg font-bold text-slate-100">Password Changed</h4>
-              <p className="text-sm text-slate-400">
+              <h4 className="text-lg font-bold text-slate-800">Password Changed</h4>
+              <p className="text-sm text-slate-500">
                 Your password has been successfully reset. Redirecting you to the login screen...
               </p>
               <Link
                 to="/login"
-                className="mt-4 block w-full text-center py-2.5 bg-slate-950 border border-slate-800 hover:border-slate-700 text-xs font-bold text-slate-300 rounded-xl transition-all"
+                className="mt-4 block w-full text-center py-2.5 bg-white border border-slate-200 hover:border-blue-300 text-xs font-bold text-slate-700 rounded-xl transition-all"
               >
                 Go to Login Immediately
               </Link>
@@ -98,7 +98,7 @@ const ResetPassword = () => {
 
               {/* Password */}
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                   New Password
                 </label>
                 <div className="relative">
@@ -115,7 +115,7 @@ const ResetPassword = () => {
                         message: 'Password must be at least 6 characters',
                       },
                     })}
-                    className="block w-full pl-11 pr-4 py-3 bg-slate-950/80 border border-slate-800 rounded-xl text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
+                    className="block w-full pl-11 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
                   />
                 </div>
                 {errors.password && (
@@ -127,7 +127,7 @@ const ResetPassword = () => {
 
               {/* Confirm Password */}
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                   Confirm Password
                 </label>
                 <div className="relative">
@@ -141,7 +141,7 @@ const ResetPassword = () => {
                       required: 'Please confirm password',
                       validate: (value) => value === password || 'Passwords do not match',
                     })}
-                    className="block w-full pl-11 pr-4 py-3 bg-slate-950/80 border border-slate-800 rounded-xl text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
+                    className="block w-full pl-11 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
                   />
                 </div>
                 {errors.confirmPassword && (
@@ -166,7 +166,7 @@ const ResetPassword = () => {
               </div>
 
               <div className="text-center pt-2">
-                <Link to="/login" className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-300 font-semibold transition-colors">
+                <Link to="/login" className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 font-semibold transition-colors">
                   <FiArrowLeft className="w-3.5 h-3.5" /> Back to Sign In
                 </Link>
               </div>
